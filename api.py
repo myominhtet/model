@@ -34,8 +34,13 @@ def preprocess_text(text):
         unicode_text = converter.transliterate(text)
     else:
         unicode_text = text
-    unicode_text = re.sub(r'[^\u1000-\u109F\s]+|\b[၀-၉]+\b', '', unicode_text)
-    unicode_text = re.sub(r'\u104B', '', unicode_text)
+    unicode_text = re.sub(r'။', '', unicode_text)
+    unicode_text = re.sub(r'၊', '', unicode_text)
+    unicode_text = unicode_text.replace('See more', '')
+    unicode_text = unicode_text.replace('#', '')
+    unicode_text = re.sub(r'[?./|@0-9]', '', unicode_text)
+    unicode_text = re.sub(r'[\b[၀-၉]+\b','',unicode_text)
+    unicode_text=unicode_text.strip()
     return unicode_text
 
 # Store predictions
